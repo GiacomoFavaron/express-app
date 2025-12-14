@@ -20,14 +20,12 @@
 
     <main class="container">
       <section class="hero">
-        <div class="hero-content">
-          <div>
-            <h2><%= title %></h2>
+        <div class="hero-figure">
+          <img src="/images/lab-image.png" alt="Imagen del laboratorio" class="hero-image" />
+          <div class="hero-overlay">
+            <h2 class="hero-title"><%= title %></h2>
             <p class="lead"><%= description %></p>
-            <p><a class="btn" href="/servicios">Ver servicios</a></p>
-          </div>
-          <div>
-            <img src="/images/lab-image.png" alt="Imagen del laboratorio" class="hero-image" />
+            <a class="btn btn-hero" href="/servicios">Ver servicios</a>
           </div>
         </div>
       </section>
