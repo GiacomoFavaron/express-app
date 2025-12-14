@@ -19,10 +19,16 @@
     </header>
 
     <main class="container">
-      <section class="hero">
-        <h2><%= title %></h2>
-        <p class="lead"><%= description %></p>
-        <p><a class="btn" href="/servicios">Ver servicios</a></p>
+      <h2>Mejoras propuestas</h2>
+      <ol>
+        <% improvements.forEach(function(it){ %>
+          <li><%= it %></li>
+        <% }); %>
+      </ol>
+
+      <section>
+        <h3>Mejora implementada</h3>
+        <p>Se añadió navegación superior y estilos básicos. También se creó la ruta <code>/servicios</code> con contenido dinámico.</p>
       </section>
     </main>
 

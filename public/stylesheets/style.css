@@ -1,8 +1,35 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+:root{
+  --accent:#0077cc;
+  --muted:#666;
+  --bg:#f7f9fb;
 }
 
-a {
-  color: #00B7FF;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  background:var(--bg);
+  color:#222;
+}
+
+.container{max-width:980px;margin:0 auto;padding:20px}
+
+.site-header{background:#fff;border-bottom:1px solid #e6e9ec}
+.site-header .container{display:flex;align-items:center;justify-content:space-between}
+.brand{margin:12px 0;font-size:20px}
+.main-nav a{margin-left:12px;text-decoration:none;color:var(--accent)}
+
+.hero{padding:48px 20px;text-align:left}
+.hero .lead{color:var(--muted);font-size:18px}
+.btn{display:inline-block;padding:10px 14px;background:var(--accent);color:#fff;border-radius:4px;text-decoration:none}
+
+.services{list-style:none;padding:0;margin:0}
+.service-item{background:#fff;padding:16px;margin-bottom:12px;border-radius:6px;border:1px solid #e6e9ec}
+.service-item h3{margin:0 0 6px}
+
+.site-footer{padding:16px 0;text-align:center;color:var(--muted)}
+
+@media (max-width:600px){
+  .site-header .container{flex-direction:column;align-items:flex-start}
+  .main-nav{margin-top:8px}
 }

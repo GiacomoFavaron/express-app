@@ -19,11 +19,15 @@
     </header>
 
     <main class="container">
-      <section class="hero">
-        <h2><%= title %></h2>
-        <p class="lead"><%= description %></p>
-        <p><a class="btn" href="/servicios">Ver servicios</a></p>
-      </section>
+      <h2>Servicios</h2>
+      <ul class="services">
+        <% services.forEach(function(s){ %>
+          <li class="service-item">
+            <h3><%= s.name %></h3>
+            <p><%= s.desc %></p>
+          </li>
+        <% }); %>
+      </ul>
     </main>
 
     <footer class="site-footer">
