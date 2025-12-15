@@ -63,18 +63,18 @@ Estructura de carpetas (resumen):
 
 ```
 render_app/
-├─ app.js
-├─ bin/www
-├─ package.json
-├─ routes/
-│  └─ index.js
-├─ views/
-│  ├─ index.ejs
-│  ├─ servicios.ejs
-│  └─ mejoras.ejs
-└─ public/
-  ├─ images/
-  └─ stylesheets/style.css
+- app.js
+- bin/www
+- package.json
+- routes/
+  - index.js
+- views/
+  - index.ejs
+  - servicios.ejs
+  - mejoras.ejs
+- public/
+  - images/
+  - stylesheets/style.css
 ```
 
 **4. Desarrollo por versiones**
