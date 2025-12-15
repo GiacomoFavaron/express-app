@@ -43,6 +43,14 @@ Crear un pequeño portal web con diferentes vistas según la ruta elegida y docu
 - Editor de texto (VS Code u otro)
 - (Opcional) Pandoc para convertir la memoria en PDF
 
+**Herramientas adicionales utilizadas**
+
+- `git` para control de versiones
+- `curl` o navegador para probar rutas
+- `pandoc` y una distribución TeX si se desea generar PDF localmente
+
+Si se desplegará en Render, se usa la integración con GitHub y el `start` script definido en `package.json`.
+
 **3. Estructura del proyecto (relevante)**
 
 - `app.js` — Configuración Express
@@ -51,6 +59,24 @@ Crear un pequeño portal web con diferentes vistas según la ruta elegida y docu
 - `views/` — Plantillas EJS (`index.ejs`, `servicios.ejs`, `mejoras.ejs`)
 - `public/` — Recursos estáticos (`stylesheets/style.css`, `images/`)
 - `lab_report_full.md` — Memoria (este archivo)
+
+Estructura de carpetas (resumen):
+
+```
+render_app/
+├─ app.js
+├─ bin/www
+├─ package.json
+├─ routes/
+│  └─ index.js
+├─ views/
+│  ├─ index.ejs
+│  ├─ servicios.ejs
+│  └─ mejoras.ejs
+└─ public/
+  ├─ images/
+  └─ stylesheets/style.css
+```
 
 **4. Desarrollo por versiones**
 
@@ -63,6 +89,12 @@ v2 — Nueva ruta `/servicios`
 
 v3 — `/mejoras`
 - Añadida la ruta y la vista que detalla las mejoras propuestas y señala las implementadas (navegación, estilos, ruta de servicios, hero con imagen).
+
+Detalles por versión (pasos y decisiones)
+
+- v1: Después de generar el esqueleto con `express-generator`, se personalizó `views/index.ejs` y `public/stylesheets/style.css`. Se preservó la configuración de vista EJS en `app.js`.
+- v2: Se añadió lógica en `routes/index.js` para proporcionar un array `services` al renderizar la vista `servicios.ejs`. Esta aproximación es suficiente para el laboratorio; la persistencia no fue requerida.
+- v3: Se añadió `mejoras.ejs` y se documentaron las mejoras. También se reorganizó el `hero` para mostrar la imagen y el botón superpuesto.
 
 **5. Fragmentos de código relevantes**
 
@@ -212,6 +244,90 @@ git push origin main --tags
 - `views/index.ejs`, `views/servicios.ejs`, `views/mejoras.ejs`
 - `public/stylesheets/style.css`
 - `README.md` — Instrucciones de uso y generación de PDF
+
+---
+
+**Sección ampliada: Diseño y decisiones de implementación**
+
+- Enfoque: mantener el proyecto sencillo y entendible para evaluación. Se priorizó claridad del código sobre optimizaciones prematuras.
+- Separación de preocupaciones: rutas en `routes/`, vistas en `views/`, estilos en `public/stylesheets`.
+- Datos: los servicios se representan como un array en memoria dentro de la ruta para facilitar la evaluación. Si se quisiera persistencia, se propondría SQLite o MongoDB según preferencia.
+
+**Diagrama simple de flujo (texto)**
+
+1. Cliente solicita `/` -> Servidor renderiza `index.ejs` con `title` y `description`.
+2. Cliente pulsa "Ver servicios" -> Navega a `/servicios`.
+3. Servidor maneja `/servicios`, construye array `services` y renderiza `servicios.ejs`.
+
+**Pruebas realizadas (casos manuales)**
+
+- Caso 1: Acceso `GET /` — Resultado esperado: status 200 y renderizar título, descripción y hero con imagen.
+- Caso 2: Acceso `GET /servicios` — Resultado esperado: status 200 y listado de 3 servicios visibles.
+- Caso 3: Acceso `GET /mejoras` — Resultado esperado: status 200 y listado de mejoras.
+- Caso 4: Archivo de imagen faltante — El `img` mostrará fallo visual; recomendable añadir `public/images/lab-image.png`.
+
+Se probaron las rutas con navegador y con `curl`:
+
+```bash
+curl -i http://localhost:3000/
+curl -i http://localhost:3000/servicios
+```
+
+**Despliegue en Render (instrucciones resumidas)**
+
+1. Crear repositorio en GitHub y subir el proyecto.
+2. En Render, crear nuevo "Web Service" y conectar a GitHub.
+3. Configurar branch `main` y comando de start (`npm start`). Render detectará Node y hará `npm install`.
+4. Añadir variable de entorno si fuera necesaria; en este proyecto no hay variables obligatorias.
+
+**Buenas prácticas y extensiones posibles**
+
+- Autenticación: añadir `express-session` y formularios de login para diferenciación de roles.
+- Persistencia: usar `sqlite3` o `mongodb` para almacenar servicios y solicitudes.
+- API REST: exponer endpoints JSON para `GET /api/servicios` y `POST /api/solicitud`.
+- Tests: implementar pruebas con `mocha`/`chai` o `jest` para endpoints.
+
+**Anexos — fragmentos de configuración**
+
+- `package.json` scripts mínimos:
+
+```json
+{
+  "scripts": {
+    "start": "node ./bin/www"
+  }
+}
+```
+
+- `app.js` (configuración mínima e importante):
+
+```javascript
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+
+var indexRouter = require('./routes/index');
+
+var app = express();
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', indexRouter);
+
+module.exports = app;
+```
+
+---
+
+Si quieres que convierta este archivo ampliado a PDF aquí, lo haré en el siguiente paso (comprobaré si `pandoc` está disponible en tu entorno). Si prefieres que incluya tu nombre, fecha exacta, o código adicional en anexos, dime qué añadir y lo incorporo.
 
 
 
