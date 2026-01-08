@@ -1,3 +1,10 @@
+---
+title: "Memoria del Laboratorio 1 — Portal Web"
+header-includes:
+  - "\\usepackage{listings}"
+  - "\\lstset{basicstyle=\\ttfamily\\small,breaklines=true,breakatwhitespace=true,columns=fullflexible}"
+---
+
 **Memoria del Laboratorio 1 — Portal Web**
 
 **Asignatura:** Desarrollo Web / Prácticas

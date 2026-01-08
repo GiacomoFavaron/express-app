@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Memoria - Portal Web</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="lab_report_print.css" />
+  
+  
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Memoria - Portal Web</h1>
+</header>
+<p><strong>Memoria del Laboratorio 1 — Portal Web</strong></p>
+<p><strong>Asignatura:</strong> Desarrollo Web / Prácticas</p>
+<p><strong>Alumno:</strong> Favaron Giacomo</p>
+<p><strong>Link App:</strong> https://express-app-44zm.onrender.com</p>
+<hr />
+<p><strong>Resumen</strong></p>
+<p>Este documento recoge el desarrollo de un portal web mínimo
+solicitado en el laboratorio. El objetivo era crear una aplicación
+Express con tres versiones: una página de bienvenida personalizada
+(<code>/</code>), una nueva ruta <code>/servicios</code> con listado de
+servicios, y una página <code>/mejoras</code> donde se describan
+propuestas y mejoras implementadas.</p>
+<hr />
+<p><strong>Índice</strong></p>
+<ol type="1">
+<li>Objetivo</li>
+<li>Entorno y herramientas</li>
+<li>Estructura del proyecto</li>
+<li>Desarrollo por versiones
+<ul>
+<li>v1 — Página de bienvenida</li>
+<li>v2 — Ruta <code>/servicios</code></li>
+<li>v3 — <code>/mejoras</code> y mejoras propuestas</li>
+</ul></li>
+<li>Fragmentos de código relevantes</li>
+<li>Comandos para ejecución y generación de PDF</li>
+<li>Control de versiones (tags/commits)</li>
+<li>Conclusiones</li>
+</ol>
+<hr />
+<p><strong>1. Objetivo</strong></p>
+<p>Crear un pequeño portal web con diferentes vistas según la ruta
+elegida y documentar el código nuevo implementado. El trabajo se
+entregará en GitHub y debe poder desplegarse en Render.</p>
+<p><strong>2. Entorno y herramientas</strong></p>
+<ul>
+<li>Node.js (&gt;=14)</li>
+<li>npm</li>
+<li>Express (generado con <code>express-generator</code>)</li>
+<li>EJS como motor de vistas</li>
+<li>Editor de texto (VS Code o otro)</li>
+</ul>
+<p><strong>Herramientas adicionales utilizadas</strong></p>
+<ul>
+<li><code>git</code> para control de versiones</li>
+<li><code>curl</code> o navegador para probar rutas</li>
+<li><code>pandoc</code> y una distribución TeX si se desea generar PDF
+localmente</li>
+</ul>
+<p>Si se desplegará en Render, se usa la integración con GitHub y el
+<code>start</code> script definido en <code>package.json</code>.</p>
+<p><strong>3. Estructura del proyecto (relevante)</strong></p>
+<ul>
+<li><code>app.js</code> — Configuración Express</li>
+<li><code>bin/www</code> — Script de arranque</li>
+<li><code>routes/index.js</code> — Rutas del sitio (se añadieron
+<code>/servicios</code> y <code>/mejoras</code>)</li>
+<li><code>views/</code> — Plantillas EJS (<code>index.ejs</code>,
+<code>servicios.ejs</code>, <code>mejoras.ejs</code>)</li>
+<li><code>public/</code> — Recursos estáticos
+(<code>stylesheets/style.css</code>, <code>images/</code>)</li>
+<li><code>lab_report_full.md</code> — Memoria (este archivo)</li>
+</ul>
+<p>Estructura de carpetas (resumen):</p>
+<pre><code>render_app/
+- app.js
+- bin/www
+- package.json
+- routes/
+  - index.js
+- views/
+  - index.ejs
+  - servicios.ejs
+  - mejoras.ejs
+- public/
+  - images/
+  - stylesheets/style.css</code></pre>
+<p><strong>4. Desarrollo por versiones</strong></p>
+<p>v1 — Página de bienvenida (<code>/</code>) - Personalicé la página de
+inicio para que represente la portada de la “empresa” (ACME Consulting
+en el ejemplo), con cabecera, navegación y sección hero. - Se sustituyó
+el contenido por defecto por un diseño sencillo y profesional.</p>
+<p>v2 — Nueva ruta <code>/servicios</code> - Añadida la ruta y la vista
+para mostrar un listado de servicios que ofrece la empresa. Los datos se
+sirven desde el servidor como un array simple.</p>
+<p>v3 — <code>/mejoras</code> - Añadida la ruta y la vista que detalla
+las mejoras propuestas y señala las implementadas (navegación, estilos,
+ruta de servicios, hero con imagen).</p>
+<p>Detalles por versión (pasos y decisiones)</p>
+<ul>
+<li>v1: Después de generar el esqueleto con
+<code>express-generator</code>, se personalizó
+<code>views/index.ejs</code> y
+<code>public/stylesheets/style.css</code>. Se preservó la configuración
+de vista EJS en <code>app.js</code>.</li>
+<li>v2: Se añadió lógica en <code>routes/index.js</code> para
+proporcionar un array <code>services</code> al renderizar la vista
+<code>servicios.ejs</code>. Esta aproximación es suficiente para el
+laboratorio; la persistencia no fue requerida.</li>
+<li>v3: Se añadió <code>mejoras.ejs</code> y se documentaron las
+mejoras. También se reorganizó el <code>hero</code> para mostrar la
+imagen y el botón superpuesto.</li>
+</ul>
+<p><strong>5. Fragmentos de código relevantes</strong></p>
+<p>A continuación se incluyen extractos de los cambios más importantes
+realizados durante el laboratorio. Estos fragmentos se incluyen como
+ejemplos para que el corrector identifique qué se programó.</p>
+<ul>
+<li><code>routes/index.js</code> (añadidas rutas <code>/servicios</code>
+y <code>/mejoras</code>):</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;express&#39;</span>)<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> router <span class="op">=</span> express<span class="op">.</span><span class="fu">Router</span>()<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">/* GET home page. */</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/&#39;</span><span class="op">,</span> <span class="kw">function</span>(req<span class="op">,</span> res<span class="op">,</span> next) {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">render</span>(<span class="st">&#39;index&#39;</span><span class="op">,</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;ACME Consulting&#39;</span><span class="op">,</span> <span class="dt">description</span><span class="op">:</span> <span class="st">&#39;Soluciones tecnológicas a medida para su negocio.&#39;</span> })<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">/* GET servicios page. */</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/servicios&#39;</span><span class="op">,</span> <span class="kw">function</span>(req<span class="op">,</span> res<span class="op">,</span> next) {</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> services <span class="op">=</span> [</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;Desarrollo Web&#39;</span><span class="op">,</span> <span class="dt">desc</span><span class="op">:</span> <span class="st">&#39;Construcción de aplicaciones web modernas.&#39;</span> }<span class="op">,</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;Consultoría IT&#39;</span><span class="op">,</span> <span class="dt">desc</span><span class="op">:</span> <span class="st">&#39;Asesoría en transformación digital.&#39;</span> }<span class="op">,</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;Soporte y Mantenimiento&#39;</span><span class="op">,</span> <span class="dt">desc</span><span class="op">:</span> <span class="st">&#39;Planes de soporte 24/7.&#39;</span> }</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">render</span>(<span class="st">&#39;servicios&#39;</span><span class="op">,</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;Servicios - ACME Consulting&#39;</span><span class="op">,</span> <span class="dt">services</span><span class="op">:</span> services })<span class="op">;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">/* GET mejoras page. */</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/mejoras&#39;</span><span class="op">,</span> <span class="kw">function</span>(req<span class="op">,</span> res<span class="op">,</span> next) {</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> improvements <span class="op">=</span> [</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Navegación principal con accesos a secciones&#39;</span><span class="op">,</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Estilos básicos y diseño responsive&#39;</span><span class="op">,</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Página de servicios con datos dinámicos&#39;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">render</span>(<span class="st">&#39;mejoras&#39;</span><span class="op">,</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;Mejoras propuestas&#39;</span><span class="op">,</span> <span class="dt">improvements</span><span class="op">:</span> improvements })<span class="op">;</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> router<span class="op">;</span></span></code></pre></div>
+<ul>
+<li><code>views/index.ejs</code> (hero full-bleed con overlay y botón
+sobre la imagen):</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">section</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;hero&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;hero-figure&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;/images/lab-image.png&quot;</span><span class="ot"> alt</span><span class="op">=</span><span class="st">&quot;Imagen del laboratorio&quot;</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;hero-image&quot;</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;hero-overlay&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">h2</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;hero-title&quot;</span><span class="dt">&gt;</span><span class="er">&lt;</span>%= title %&gt;<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;lead&quot;</span><span class="dt">&gt;</span><span class="er">&lt;</span>%= description %&gt;<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;btn btn-hero&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/servicios&quot;</span><span class="dt">&gt;</span>Ver servicios<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">section</span><span class="dt">&gt;</span></span></code></pre></div>
+<ul>
+<li><code>views/servicios.ejs</code> (listado dinámico de
+servicios):</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>Servicios<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">ul</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;services&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>% services.forEach(function(s){ %&gt;</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">li</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;service-item&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">h3</span><span class="dt">&gt;</span><span class="er">&lt;</span>%= s.name %&gt;<span class="dt">&lt;/</span><span class="kw">h3</span><span class="dt">&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span><span class="er">&lt;</span>%= s.desc %&gt;<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>% }); %&gt;</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">ul</span><span class="dt">&gt;</span></span></code></pre></div>
+<ul>
+<li><code>views/mejoras.ejs</code> (propuestas y mejora
+implementada):</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>Mejoras propuestas<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">ol</span><span class="dt">&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>% improvements.forEach(function(it){ %&gt;</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span><span class="er">&lt;</span>%= it %&gt;<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>% }); %&gt;</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">ol</span><span class="dt">&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">section</span><span class="dt">&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">h3</span><span class="dt">&gt;</span>Mejora implementada<span class="dt">&lt;/</span><span class="kw">h3</span><span class="dt">&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Se añadió navegación superior y estilos básicos. También se creó la ruta <span class="dt">&lt;</span><span class="kw">code</span><span class="dt">&gt;</span>/servicios<span class="dt">&lt;/</span><span class="kw">code</span><span class="dt">&gt;</span> con contenido dinámico.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">section</span><span class="dt">&gt;</span></span></code></pre></div>
+<ul>
+<li>Fragmento de <code>public/stylesheets/style.css</code> (estilos del
+hero y botón):</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.hero-figure</span>{<span class="kw">position</span><span class="ch">:</span><span class="dv">relative</span><span class="op">;</span><span class="kw">width</span><span class="ch">:</span><span class="dv">100</span><span class="dt">%</span><span class="op">;</span><span class="kw">height</span><span class="ch">:</span><span class="dv">420</span><span class="dt">px</span><span class="op">;</span><span class="kw">overflow</span><span class="ch">:</span><span class="dv">hidden</span>}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">.hero-image</span>{<span class="kw">width</span><span class="ch">:</span><span class="dv">100</span><span class="dt">%</span><span class="op">;</span><span class="kw">height</span><span class="ch">:</span><span class="dv">100</span><span class="dt">%</span><span class="op">;</span><span class="kw">object-fit</span><span class="ch">:</span><span class="dv">cover</span><span class="op">;</span><span class="kw">display</span><span class="ch">:</span><span class="dv">block</span>}</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">.hero-overlay</span>{<span class="kw">position</span><span class="ch">:</span><span class="dv">absolute</span><span class="op">;</span><span class="kw">left</span><span class="ch">:</span><span class="dv">50</span><span class="dt">%</span><span class="op">;</span><span class="kw">top</span><span class="ch">:</span><span class="dv">50</span><span class="dt">%</span><span class="op">;</span><span class="kw">transform</span><span class="ch">:</span><span class="fu">translate(</span><span class="dv">-50</span><span class="dt">%</span><span class="op">,</span><span class="dv">-50</span><span class="dt">%</span><span class="fu">)</span><span class="op">;</span><span class="kw">color</span><span class="ch">:</span><span class="cn">#fff</span><span class="op">;</span><span class="kw">text-align</span><span class="ch">:</span><span class="dv">center</span><span class="op">;</span><span class="kw">padding</span><span class="ch">:</span><span class="dv">24</span><span class="dt">px</span><span class="op">;</span><span class="kw">border-radius</span><span class="ch">:</span><span class="dv">8</span><span class="dt">px</span><span class="op">;</span><span class="kw">background</span><span class="ch">:</span><span class="fu">linear-gradient(</span><span class="dv">180</span><span class="dt">deg</span><span class="op">,</span> <span class="fu">rgba(</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0.28</span><span class="fu">)</span><span class="op">,</span> <span class="fu">rgba(</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0.38</span><span class="fu">))</span><span class="op">;</span><span class="kw">max-width</span><span class="ch">:</span><span class="dv">90</span><span class="dt">%</span><span class="op">;</span>}</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">.btn-hero</span>{<span class="kw">padding</span><span class="ch">:</span><span class="dv">12</span><span class="dt">px</span> <span class="dv">18</span><span class="dt">px</span><span class="op">;</span><span class="kw">font-weight</span><span class="ch">:</span><span class="dv">600</span><span class="op">;</span><span class="kw">box-shadow</span><span class="ch">:</span><span class="dv">0</span> <span class="dv">6</span><span class="dt">px</span> <span class="dv">18</span><span class="dt">px</span> <span class="fu">rgba(</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0.2</span><span class="fu">)</span>}</span></code></pre></div>
+<p><strong>6. Comandos para ejecución local y con Render</strong></p>
+<ul>
+<li>Ejecutar localmente:</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> render_app</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> start</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Abrir http://localhost:3000/</span></span></code></pre></div>
+<p>Para la ejecución con Render abrir Render (https://render.com/) y
+crear un Web Service con node como lenguaje. Despuès conectalo al repo
+del projecto y pulsa ‘Build’.</p>
+<p>link app: https://express-app-44zm.onrender.com</p>
+<p><strong>7. Control de versiones (sugerencia para
+entrega)</strong></p>
+<p>Hacer commits y tags por versión, por ejemplo:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># después de implementar la versión 1</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;v1: Página de bienvenida personalizada&quot;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> v1 <span class="at">-m</span> <span class="st">&quot;Versión 1 - Página de bienvenida&quot;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># después de implementar la versión 2</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-am</span> <span class="st">&quot;v2: Añadida ruta /servicios y vista&quot;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> v2 <span class="at">-m</span> <span class="st">&quot;Versión 2 - /servicios&quot;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># después de implementar la versión 3</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-am</span> <span class="st">&quot;v3: Añadida /mejoras y mejoras de UI&quot;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> v3 <span class="at">-m</span> <span class="st">&quot;Versión 3 - /mejoras&quot;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># subir tags y commits</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main <span class="at">--tags</span></span></code></pre></div>
+<p><strong>8. Conclusiones</strong></p>
+<ul>
+<li>Se ha implementado un portal web básico con las tres versiones
+solicitadas.</li>
+<li>El código añadido está documentado en este informe con fragmentos
+representativos.</li>
+<li>Como mejoras futuras se propone añadir persistencia (base de datos),
+formulario de contacto y despliegue automático en Render mediante
+integración con GitHub.</li>
+</ul>
+</body>
+</html>
